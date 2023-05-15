@@ -13,7 +13,7 @@ require __DIR__ . '/../configs/functions.php';
 require __DIR__ . '/../configs/params.php';
 
 try{
-    
+
     //inclusion du fichier qui contient toutes les routes (URLs du site et qui chargera le controleur de chaque route
     require __DIR__ . '/../configs/routes.php';
 
