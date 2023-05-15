@@ -19,6 +19,8 @@ class MainController
     //controleur de la page 404
     public function page404(): void
     {
+        //modifie le code HTTP pour qu'il soit bien 404 et pas 200
+        header('HTTP/1.1 404 Not Found');
         require VIEWS_DIR . '/404.php';
     }
 
