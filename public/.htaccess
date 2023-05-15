@@ -1,0 +1,18 @@
+#fichier necessaire sur un serveur Apache,pour que toutes les requetes HTTP soient redirigées sur le controleur frontal "index.php"
+
+#verification que le module de ré écriture d'URL fonctionne
+<IfModule mod_rewrite.c>
+    #désactivation de la négociation des contenus
+    Options -Multiviews
+
+    #activation de la ré-écriture d'URL
+    RewriteEngine On
+
+    #conditions qui vont empecher la redirection sur index.php si l'URL demandée pointe sur un dossier ou fichier existant
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    #redirection de toutes les requètes sur index.php
+    RewriteRule ^ index.php [QSA,L]
+
+</IfModule>
