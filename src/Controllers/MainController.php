@@ -24,7 +24,11 @@ class MainController
     public function register(): void
     {
 
-        //TODO: redirigé sur l'accueil si on est déja connecté
+//redirige sur l'accueil si on est deja connecté
+        if(isConnected()){
+            header('Location: ' . PUBLIC_PATH . '/');
+            die();
+        }
 
         //traitement de formulaire d'inscription
         // Appel des variables
@@ -97,13 +101,20 @@ class MainController
         require VIEWS_DIR . '/register.php';
     }
 //controleur de la page de connexion
-//TODO rediriger sur l'accueil si on est deja connecté
+
 
 
 
 
     public function login():void
-    {
+    {//TODO rediriger sur l'accueil si on est deja connecté
+
+        //redirige l'utilisateur sur la page de connexion
+        if(isConnected()){
+            header('Location: ' . PUBLIC_PATH . '/');
+            die();
+        }
+
         // Appel des variables
         if(
             isset($_POST['email']) &&
@@ -152,10 +163,18 @@ class MainController
         require VIEWS_DIR . '/login.php';
     }
     //controleur de la page de deconnexion
-//TODO: rediriger sur la page de connexion si l'utilisateur n'est pas connecté
+
 
     public function logout():void
-    {//suppression de la variable "user"stocké en session (deconnexion)
+    {
+        //redirige l'utilisateur sur la page de connexion
+        if(!isConnected()){
+            header('Location: ' . PUBLIC_PATH . '/connexion/');
+            die();
+        }
+
+
+        //suppression de la variable "user"stocké en session (deconnexion)
         unset($_SESSION['user']);
 
         require VIEWS_DIR . '/logout.php';

@@ -20,10 +20,7 @@
                     <a class="nav-link<?= (ROUTE == '/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/">Accueil</a>
                 </li>
 
-                <!--lien vers page connexion -->
-                <li class="nav-item">
-                    <a class="nav-link<?= (ROUTE == '/connexion/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/connexion/">Connexion</a>
-                </li>
+
 
 
                 <!--lien vers page de deconnexion-->
@@ -31,18 +28,34 @@
                     <a class="nav-link<?= (ROUTE == '/deconnexion/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/deconnexion/">Déconnexion</a>
                 </li>
 
+                <?php
+                //si l'utilisateur est connecté
+                if(isConnected()){
+                ?>
+                <!-- lien vers la page de deconnexion-->
+                <li class="nav-item">
+                    <a class="nav-link<?= (ROUTE == '/deconnexion/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/deconnexion/">Déconnexion</a>
+                </li>
+                <?php
+
+                }else{
+                ?>
+                <!--lien vers page connexion -->
+                <li class="nav-item">
+                    <a class="nav-link<?= (ROUTE == '/connexion/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/connexion/">Connexion</a>
+                </li>
 
 
-
-
-                <!-- TODO: penser à masquer ce bouton si l'utilisateur est connecté-->
                 <!--lien vers page d'inscription -->
                 <li class="nav-item">
                     <a class="nav-link<?= (ROUTE == '/creer-un-compte/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/creer-un-compte/">Inscription</a>
                 </li>
+              <?php
+
+}
 
 
-
+                ?>
             </ul>
 
         </div>
