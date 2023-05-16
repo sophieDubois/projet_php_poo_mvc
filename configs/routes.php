@@ -34,6 +34,12 @@ switch (ROUTE){
     break;
 
 
+    //ropute de la page de profil*
+    case '/mon-profil/';
+        $mainController->profil();
+    break;
+
+
 
 
 

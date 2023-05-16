@@ -26,6 +26,11 @@
                 if(isConnected()){
 
                     ?>
+                    <!--lien vers page connexion -->
+                    <li class="nav-item">
+                        <a class="nav-link<?= (ROUTE == '/mon-profil/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/mon-profil/">Mon profil</a>
+                    </li>
+
                     <!-- lien vers la page de deconnexion-->
                     <li class="nav-item">
                         <a class="nav-link<?= (ROUTE == '/deconnexion/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/deconnexion/">Déconnexion</a>
