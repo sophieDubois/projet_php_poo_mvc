@@ -23,6 +23,11 @@ switch (ROUTE){
         $mainController->register();
         break;
 
+    //route de la page de connexion
+    case '/connexion/';
+        $mainController->login();
+    break;
+
     //si aucunes des URL précédentes ne match, c'est la page qui sera appelé par défaut
     default;
         $mainController->page404();

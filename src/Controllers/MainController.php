@@ -96,7 +96,61 @@ class MainController
 
         require VIEWS_DIR . '/register.php';
     }
+//controleur de la page de connexion
+//TODO rediriger sur l'accueil si on est deja connecté
 
+
+
+
+    public function login():void
+    {
+        // Appel des variables
+        if(
+            isset($_POST['email']) &&
+            isset($_POST['password'])
+        ) {
+
+            // Vérifs
+            if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                $errors[] = 'Adresse email invalide';
+            }
+
+            if (!preg_match('/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[ !"#\$%&\'()*+,\-.\/:;<=>?@[\\\\\]\^_`{\|}~]).{8,4096}$/u', $_POST['password'])) {
+                $errors[] = 'Mot de passe invalide';
+            }
+
+
+            // Si pas d'erreurs
+            if(!isset($errors)){
+
+                // instanciation manager des utilisateur
+                $userManager = new UserManager();
+                //recup du compte correspondent a l'email envoyé ds la formulaire
+                $userToConnect = $userManager->FindOneBy('email', $_POST['email']);
+
+               //si le compte n'existe pas
+                if(empty($userToConnect)){
+                    $errors[] = 'Le compte n\'existe pas.';
+                }else{
+                    //si le mot de passe est pas bon
+                    if(!password_verify($_POST['password'], $userToConnect->getPassword())){
+                        $errors[]= 'Le mot de passe n\'est pas le bon mot de passe.';
+                    }else{
+                        //stockage de l'utilisateur a connecter en session
+                        $_SESSION['user'] = $userToConnect;
+
+
+                        $success = 'Vous êtes bien connecté !';
+                    }
+                }
+
+            }
+
+        }
+
+
+        require VIEWS_DIR . '/login.php';
+    }
 
     //controleur de la page 404
     public function page404(): void
