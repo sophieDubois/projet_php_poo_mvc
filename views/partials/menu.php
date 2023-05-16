@@ -26,6 +26,15 @@
                 </li>
 
 
+                <!--lien vers page de deconnexion-->
+                <li class="nav-item">
+                    <a class="nav-link<?= (ROUTE == '/deconnexion/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/deconnexion/">Déconnexion</a>
+                </li>
+
+
+
+
+
                 <!-- TODO: penser à masquer ce bouton si l'utilisateur est connecté-->
                 <!--lien vers page d'inscription -->
                 <li class="nav-item">
