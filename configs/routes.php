@@ -54,6 +54,10 @@ switch (ROUTE){
         $mainController->fruitDetails();
     break;
 
+    //route de la page qui supprime un fruit
+    case '/fruits/supprimer/';
+        $mainController->fruitDelete();
+    break;
 
 
 
