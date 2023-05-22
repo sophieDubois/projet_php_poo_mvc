@@ -48,7 +48,7 @@
                         //pour chaque fruit on créer une new ligne <tr> composé de - >td> (pour chaque info du fruit)
                         foreach ($fruits as $fruit){
                             ?>
-                            <!--affichage des infos du fruit (avec htmlspecialchars pour se proteger des failles  -->
+                            <!--affichage des infos du fruit (avec htmlspecialchars pour se proteger des failles xss -->
                             <tr>
                                 <td><?= htmlspecialchars( $fruit->getId())?></td>
                                 <td><?= ucfirst( htmlspecialchars( $fruit->getName()))?></td>
@@ -57,7 +57,6 @@
                                 <td><?= htmlspecialchars(number_format( $fruit->getPricePerKilo(),2,',',''))?>€</td>
                                 <td><a href="<?= PUBLIC_PATH?>/fruits/fiche/?id=<?= htmlspecialchars($fruit->getId())?>">Voir la fiche</a></td>
                             </tr>
-
 
                             <?php
                         }
