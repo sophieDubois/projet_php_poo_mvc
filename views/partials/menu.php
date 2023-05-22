@@ -20,6 +20,12 @@
                     <a class="nav-link<?= (ROUTE == '/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/">Accueil</a>
                 </li>
 
+                <!--lien vers page la liste des fruits -->
+                <li class="nav-item">
+                    <a class="nav-link<?= (ROUTE == '/fruits/liste/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/fruits/liste/">Liste des fruits</a>
+                </li>
+
+
                 <?php
 
                 //si l'utilisateur est connecté

@@ -44,6 +44,11 @@ switch (ROUTE){
         $mainController->fruitAdd();
     break;
 
+    //route de la page qui liste les fruit
+    case '/fruits/liste/';
+        $mainController->fruitList();
+    break;
+
 
 
 

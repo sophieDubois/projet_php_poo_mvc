@@ -270,14 +270,24 @@ class MainController
 
 
 
-
-
-
-
-
-
         //charge la vue fruitAdd.php
         require VIEWS_DIR . '/fruitAdd.php';
+    }
+
+    //controleur de la page liste les fruits
+    public function fruitList(): void
+    {
+        //recuperation du manager des fruits
+        $fruitManager = new FruitManager();
+
+        //recuperation de tous les fruits ds la base de données
+        $fruits =$fruitManager->findAll();
+
+
+
+
+        //charge la vue fruitList ds le dossier views
+        require VIEWS_DIR . '/fruitList.php';
     }
 
 
