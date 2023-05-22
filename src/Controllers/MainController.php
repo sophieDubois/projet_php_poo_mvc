@@ -293,6 +293,13 @@ class MainController
     //controleur de la page qui affiche un fruit en detail
     public function fruitDetails(): void
     {
+
+        //verif. que l'id ds url existe
+        if(!isset($_GET['id'])){
+            $this->page404();
+            die();
+        }
+
         //recup. du manager des fruits
         $fruitManager = new FruitManager();
 
