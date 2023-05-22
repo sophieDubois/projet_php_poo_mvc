@@ -35,6 +35,12 @@
                     <li class="nav-item">
                         <a class="nav-link<?= (ROUTE == '/deconnexion/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/deconnexion/">Déconnexion</a>
                     </li>
+
+                    <!--lien vers la page d'ajout d'un fruit -->
+                    <li class="nav-item">
+                        <a class="nav-link<?= (ROUTE == '/fruits/ajouter-un-fruit/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/fruits/ajouter-un-fruit/">Ajouter un fruit</a>
+                    </li>
+
                     <?php
 
                 }else{

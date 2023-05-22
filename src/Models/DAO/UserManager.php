@@ -24,7 +24,7 @@ class UserManager{
     //constructeur pour hydrater l'attribut $db
     public function __construct()
     {
-        $this->db = connectedDb();
+        $this->db = connectDb();
     }
 
 

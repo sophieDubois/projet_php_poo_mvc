@@ -4,8 +4,11 @@
 namespace Controllers;
 //importation des classes utilisées
 use DateTime;
+use Models\DAO\FruitManager;
+use Models\DTO\Fruit;
 use Models\DTO\User;
 use Models\DAO\UserManager;
+
 
 //classe contenant tous les controleurs de notre site
 
@@ -193,7 +196,89 @@ class MainController
         require VIEWS_DIR . '/profil.php';
     }
 
+//controlleur de la page fruitAdd
+    public  function fruitAdd():void
+    //redirige l'utilisateur sur la page de connexion si pas connecté
+    {        if(!isConnected()){
+        header('Location: ' . PUBLIC_PATH . '/connexion/');
+        die();
 
+    }
+
+        // Appel des variables
+        if(
+            isset($_POST['name']) &&
+            isset($_POST['color']) &&
+            isset($_POST['origin']) &&
+            isset($_POST['price-per-kilo']) &&
+            isset($_POST['description'])
+        ){
+
+            // Vérifs
+            if(mb_strlen($_POST['name']) < 2 || mb_strlen($_POST['name']) > 50){
+                $errors[] = 'Nom invalide';
+            }
+
+            if(mb_strlen($_POST['color']) < 2 || mb_strlen($_POST['color']) > 50){
+                $errors[] = 'Couleur invalide';
+            }
+
+            if(mb_strlen($_POST['origin']) < 2 || mb_strlen($_POST['origin']) > 50){
+                $errors[] = 'Pays d\'origine invalide';
+            }
+
+            if(!preg_match('/^[0-9]{1,7}([.,][0-9]{1,2})?$/', $_POST['price-per-kilo'])){
+                $errors[] = 'Prix invalide';
+            }
+
+            if(mb_strlen($_POST['description']) < 5 || mb_strlen($_POST['description']) > 10000){
+                $errors[] = 'Description invalide';
+            }
+
+            // Si pas d'erreurs
+            if(!isset($errors)){
+
+                // Création du fruit
+
+                $newfruit = new Fruit();
+
+
+                //hydrater le nouveau fruit
+                $newfruit
+                    ->setName($_POST['name'])
+                    ->setColor($_POST['color'])
+                    ->setOrigin($_POST['origin'])
+                    //on remplace la virgule par un point sinon problème avec la base de données
+                    ->setPricePerKilo( str_replace(',','.', $_POST['price-per-kilo']))
+                    ->setUser($_SESSION['user'])
+                    ->setDescription($_POST['description'])
+                ;
+
+                //recuperation du manager des fruits
+                $fruitManager = new FruitManager();
+
+                //sauvegarde du fruit en BDD
+                $fruitManager ->save($newfruit);
+
+
+                // Message de succès
+                $success = 'Le fruit a bien été ajouté !';
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+        //charge la vue fruitAdd.php
+        require VIEWS_DIR . '/fruitAdd.php';
+    }
 
 
 

@@ -39,7 +39,10 @@ switch (ROUTE){
         $mainController->profil();
     break;
 
-
+    //route de la page d'ajout d'un fruits
+    case '/fruits/ajouter-un-fruit/';
+        $mainController->fruitAdd();
+    break;
 
 
 
